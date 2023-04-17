@@ -1,7 +1,8 @@
-package com.example.chiorerickandmorty
+package com.example.chiorerickandmorty.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.chiorerickandmorty.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
