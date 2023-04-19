@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#121e2d</color>
+    <color name="colorPrimaryDark">#121e2d</color>
+    <color name="colorAccent">#3bdeee</color>
+    <color name="darkBlue">#17293F</color>
+    <color name="yellow">#FFC42E</color>
+    <color name="grey">#A7A7A9</color>
+
+    <color name="placeholder">#293E58</color>
+    <color name="ratingBackground">#293E58</color>
+    <color name="background">@color/colorPrimary</color>
+    <color name="cardBackground">@color/darkBlue</color>
+
+    <color name="colorBdget">#85BB65</color>
+
 </resources>
