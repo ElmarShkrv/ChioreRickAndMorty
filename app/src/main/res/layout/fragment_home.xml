@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
         android:id="@+id/tvHomeSearch"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/search_box_background"
@@ -21,9 +21,19 @@
         android:hint="Search news"
         android:textColorHint="@color/txt_color"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/filterIv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/filterIv"
+        android:layout_width="36dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toTopOf="@+id/tvHomeSearch"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHomeSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_filter" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRv"
