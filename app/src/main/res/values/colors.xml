@@ -14,7 +14,6 @@
     <color name="darkBlue">#17293F</color>
     <color name="yellow">#FFC42E</color>
     <color name="grey">#A7A7A9</color>
-    <color name="character_alive">#FF3DDC84</color>
 
     <color name="placeholder">#293E58</color>
     <color name="ratingBackground">#293E58</color>
@@ -26,5 +25,10 @@
     <color name="light_basil">#b9e4c9</color>
     <color name="basil">#37966f</color>
     <color name="orange">#F9AA33</color>
+
+    <color name="character_alive">#14D91B</color>
+    <color name="character_dead">#FF0800</color>
+    <color name="character_unknown">#E3E3E3</color>
+    <color name="character_else">#F8F816</color>
 
 </resources>

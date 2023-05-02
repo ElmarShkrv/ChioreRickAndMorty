@@ -9,7 +9,9 @@ import androidx.navigation.ui.NavigationUI
 import com.example.chiorerickandmorty.R
 import com.example.chiorerickandmorty.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
