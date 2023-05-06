@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.chiorerickandmorty.R
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeRvAdapter
 import com.example.chiorerickandmorty.databinding.FragmentHomeBinding
+import com.example.chiorerickandmorty.util.DefaultItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,6 +43,11 @@ class HomeFragment : Fragment() {
         homeRvAdapter = HomeRvAdapter()
         binding.apply {
             homeRv.adapter = homeRvAdapter
+
+            homeRv.addItemDecoration(DefaultItemDecorator(
+                resources.getDimensionPixelSize(R.dimen.horizontal_margin),
+                resources.getDimensionPixelSize(R.dimen.vertical_margin)
+            ))
         }
     }
 
