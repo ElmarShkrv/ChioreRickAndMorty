@@ -3,6 +3,7 @@ package com.example.chiorerickandmorty.adapter.homeadapters
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -55,6 +56,11 @@ class HomeRvAdapter() :
         if (result != null) {
             holder.bind(result)
         }
+
+        holder.itemView.animation = AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.scale_up
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
