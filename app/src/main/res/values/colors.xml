@@ -31,4 +31,6 @@
     <color name="character_unknown">#E3E3E3</color>
     <color name="character_else">#F8F816</color>
 
+    <color name="shimmerColor">#C2C2C2</color>
+
 </resources>

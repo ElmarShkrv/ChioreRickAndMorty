@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chiorerickandmorty.R
@@ -50,19 +54,29 @@ class HomeFragment : Fragment() {
             footer = HomeLoadStateAdapter { homeRvAdapter.retry() },
         )
 
-//        feedAdapter.addLoadStateListener { loadState ->
-//            binding.feedRv.isVisible = loadState.source.refresh is LoadState.NotLoading
-//            binding.shimmerLayout.isVisible = loadState.source.refresh is LoadState.Loading
-//            binding.imgListType.isInvisible = loadState.source.refresh is LoadState.Loading
-//            binding.txtListType.isInvisible = loadState.source.refresh is LoadState.Loading
-//            //binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-//            binding.retryBtn.isVisible = loadState.source.refresh is LoadState.Error
-//            handleError(loadState)
-//        }
+        homeRvAdapter.addLoadStateListener { loadState ->
+            binding.homeRv.isVisible = loadState.source.refresh is LoadState.NotLoading
+            binding.shimmerLayout.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.tvHomeSearch.isInvisible = loadState.source.refresh is LoadState.Loading
+            binding.filterIv.isInvisible = loadState.source.refresh is LoadState.Loading
+            //binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.retryBtn.isVisible = loadState.source.refresh is LoadState.Error
+            handleError(loadState)
+        }
 
         binding.retryBtn.setOnClickListener {
             homeRvAdapter.retry()
         }
+    }
+
+    private fun handleError(loadState: CombinedLoadStates) {
+        val errorStates = loadState.source.append as? LoadState.Error
+            ?: loadState.source.prepend as? LoadState.Error
+
+        errorStates?.let {
+            Toast.makeText(requireContext(), "${it.error}", Toast.LENGTH_LONG).show()
+        }
+
     }
 
     private fun setUpHomeRv() {
