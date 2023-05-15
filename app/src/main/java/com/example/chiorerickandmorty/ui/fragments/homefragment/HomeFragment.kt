@@ -9,6 +9,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +45,10 @@ class HomeFragment : Fragment() {
 
         setUpHomeRv()
         initAdapter()
+
+        binding.filterIv.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
+        }
 
     }
 
