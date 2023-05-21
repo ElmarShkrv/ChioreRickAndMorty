@@ -17,7 +17,8 @@
 
     <color name="placeholder">#293E58</color>
     <color name="ratingBackground">#293E58</color>
-    <color name="background">@color/colorPrimary</color>
+    <color name="background">#1F2229</color>
+    <color name="background_secondary">#303436</color>
     <color name="cardBackground">@color/darkBlue</color>
 
     <color name="colorBdget">#85BB65</color>

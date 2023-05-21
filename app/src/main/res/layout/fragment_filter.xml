@@ -5,16 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".ui.fragments.filter.FilterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="88dp"
+            android:layout_height="4dp"
+            android:src="@color/colorAccent"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="8dp"
         android:text="Filter"
+        android:textColor="@color/colorAccent"
         android:textAlignment="center"
         android:textSize="18sp"
+
         />
 
     <LinearLayout
@@ -29,6 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Status"
             android:textSize="18sp"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
         <com.google.android.material.chip.ChipGroup
@@ -71,6 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Gender"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 
