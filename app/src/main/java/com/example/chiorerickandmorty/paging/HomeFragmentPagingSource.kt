@@ -10,6 +10,9 @@ import kotlinx.coroutines.delay
 
 class HomeFragmentPagingSource(
     private val rickAndMortyApi: RickAndMortyApi,
+    private val status: String? = null,
+    private val gender: String? = null,
+
 ) : PagingSource<Int, Characters>() {
 
     override fun getRefreshKey(state: PagingState<Int, Characters>): Int? {
@@ -19,7 +22,7 @@ class HomeFragmentPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Characters> {
         val pageNumber = params.key ?: 1
         return try {
-            val response = rickAndMortyApi.getAllCharacters(pageNumber)
+            val response = rickAndMortyApi.getAllCharacters(status, gender, pageNumber)
             delay(2000)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
@@ -33,7 +36,7 @@ class HomeFragmentPagingSource(
 
             LoadResult.Page(
                 data = data.orEmpty(),
-                prevKey = if (pageNumber == STARTING_PAGE_INDEX) null else pageNumber -1,
+                prevKey = if (pageNumber == STARTING_PAGE_INDEX) null else pageNumber - 1,
                 nextKey = nextPageNumber
             )
         } catch (e: Exception) {
