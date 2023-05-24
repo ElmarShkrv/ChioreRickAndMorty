@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeRvAdapter: HomeRvAdapter
     private val viewModel by viewModels<HomeViewModel>()
+    private val TAG = "Home"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +49,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         viewModel.getAllCharacters()
 
     }
@@ -54,18 +57,27 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.test.observe(viewLifecycleOwner) { allCharactersResponse ->
-            homeRvAdapter.submitData(viewLifecycleOwner.lifecycle, allCharactersResponse)
-        }
-
 
         setUpHomeRv()
         initAdapter()
+        observeFilteredData()
 
         binding.filterIv.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
         }
 
+    }
+
+
+    private fun observeFilteredData() {
+        viewModel.test.observe(viewLifecycleOwner) { filteredData ->
+            if (filteredData == null) {
+                Log.e(TAG, "filterdata equal null")
+            }
+            filteredData?.let {
+                homeRvAdapter.submitData(lifecycle, it)
+            }
+        }
     }
 
     private fun initAdapter() {
@@ -107,10 +119,12 @@ class HomeFragment : Fragment() {
             homeRvAdapter.stateRestorationPolicy =
                 RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
-            homeRv.addItemDecoration(DefaultItemDecorator(
-                resources.getDimensionPixelSize(R.dimen.horizontal_margin),
-                resources.getDimensionPixelSize(R.dimen.vertical_margin)
-            ))
+            homeRv.addItemDecoration(
+                DefaultItemDecorator(
+                    resources.getDimensionPixelSize(R.dimen.horizontal_margin),
+                    resources.getDimensionPixelSize(R.dimen.vertical_margin)
+                )
+            )
         }
     }
 

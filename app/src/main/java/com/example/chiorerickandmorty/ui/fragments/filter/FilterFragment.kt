@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.chiorerickandmorty.R
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeRvAdapter
@@ -16,6 +17,7 @@ import com.example.chiorerickandmorty.extensions.setChipChecked
 import com.example.chiorerickandmorty.ui.fragments.homefragment.HomeViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FilterFragment : BottomSheetDialogFragment() {
@@ -35,6 +37,7 @@ class FilterFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         binding.apply {
             viewModel.filterValue.observe(viewLifecycleOwner) { item ->

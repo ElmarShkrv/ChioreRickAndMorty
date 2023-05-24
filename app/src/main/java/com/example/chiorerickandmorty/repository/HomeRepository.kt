@@ -10,8 +10,9 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
-    private val rickAndMortyApi: RickAndMortyApi,
+    private val rickAndMortyApi: RickAndMortyApi
 ) {
+
     fun getAllCharacters() =
         Pager(
             config = PagingConfig(

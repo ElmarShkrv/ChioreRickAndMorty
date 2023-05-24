@@ -10,8 +10,8 @@ import kotlinx.coroutines.delay
 
 class HomeFragmentPagingSource(
     private val rickAndMortyApi: RickAndMortyApi,
-    private val status: String? = null,
-    private val gender: String? = null,
+    private val status: String?,
+    private val gender: String?
 
 ) : PagingSource<Int, Characters>() {
 
@@ -23,7 +23,7 @@ class HomeFragmentPagingSource(
         val pageNumber = params.key ?: 1
         return try {
             val response = rickAndMortyApi.getAllCharacters(status, gender, pageNumber)
-            delay(2000)
+//            delay(2000)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
 
