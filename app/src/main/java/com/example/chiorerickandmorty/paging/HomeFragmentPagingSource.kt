@@ -9,9 +9,9 @@ import com.example.chiorerickandmorty.util.Constants.Companion.STARTING_PAGE_IND
 import kotlinx.coroutines.delay
 
 class HomeFragmentPagingSource(
-    private val rickAndMortyApi: RickAndMortyApi,
     private val status: String?,
-    private val gender: String?
+    private val gender: String?,
+    private val rickAndMortyApi: RickAndMortyApi,
 
 ) : PagingSource<Int, Characters>() {
 
@@ -23,7 +23,6 @@ class HomeFragmentPagingSource(
         val pageNumber = params.key ?: 1
         return try {
             val response = rickAndMortyApi.getAllCharacters(status, gender, pageNumber)
-//            delay(2000)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
 

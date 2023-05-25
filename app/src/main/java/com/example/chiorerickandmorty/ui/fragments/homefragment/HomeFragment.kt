@@ -23,6 +23,7 @@ import com.example.chiorerickandmorty.adapter.homeadapters.HomeLoadStateAdapter
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeRvAdapter
 import com.example.chiorerickandmorty.data.model.Characters
 import com.example.chiorerickandmorty.databinding.FragmentHomeBinding
+import com.example.chiorerickandmorty.util.DataFilter
 import com.example.chiorerickandmorty.util.DefaultItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.coroutineScope
@@ -48,10 +49,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        viewModel.getAllCharacters()
-
+        viewModel.setFilter(DataFilter.All)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,6 +59,7 @@ class HomeFragment : Fragment() {
         setUpHomeRv()
         initAdapter()
         observeFilteredData()
+
 
         binding.filterIv.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_filterFragment)

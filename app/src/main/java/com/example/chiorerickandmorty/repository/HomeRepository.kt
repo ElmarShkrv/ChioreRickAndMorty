@@ -3,10 +3,8 @@ package com.example.chiorerickandmorty.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.example.chiorerickandmorty.data.model.CharacterResponse
 import com.example.chiorerickandmorty.data.remote.RickAndMortyApi
 import com.example.chiorerickandmorty.paging.HomeFragmentPagingSource
-import retrofit2.Response
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
@@ -20,7 +18,7 @@ class HomeRepository @Inject constructor(
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { HomeFragmentPagingSource(rickAndMortyApi, null, null) }
+            pagingSourceFactory = { HomeFragmentPagingSource(null, null, rickAndMortyApi) }
         ).liveData
 
     fun getCharactersbyStatusAndGender(status: String, gender: String) =
@@ -30,7 +28,7 @@ class HomeRepository @Inject constructor(
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { HomeFragmentPagingSource(rickAndMortyApi, status, gender) }
+            pagingSourceFactory = { HomeFragmentPagingSource(status, gender, rickAndMortyApi) }
         ).liveData
 
     fun getCharactersByStatus(status: String) =
@@ -40,7 +38,7 @@ class HomeRepository @Inject constructor(
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { HomeFragmentPagingSource(rickAndMortyApi, status, null) }
+            pagingSourceFactory = { HomeFragmentPagingSource(status, null, rickAndMortyApi) }
         ).liveData
 
     fun getCharactersByGender(gender: String) =
@@ -50,6 +48,6 @@ class HomeRepository @Inject constructor(
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { HomeFragmentPagingSource(rickAndMortyApi, null, gender) }
+            pagingSourceFactory = { HomeFragmentPagingSource(null, gender, rickAndMortyApi) }
         ).liveData
 }
