@@ -23,8 +23,9 @@ class HomeRvAdapter() :
             with(binding) {
                 Glide.with(root).load(characters.image).into(characterImage)
 
-                characterSpeciesTv.text = characters.species
+                characterSpeciesTv.text = "Species: ${characters.species}"
                 characterNameTv.text = characters.name
+                characterGenderTv.text = "Gender: ${characters.gender}"
 
                 when (characters.status) {
                     CharacterStatusEnums.CHARACTER_ALIVE.value -> characterStatusIv.setImageResource(

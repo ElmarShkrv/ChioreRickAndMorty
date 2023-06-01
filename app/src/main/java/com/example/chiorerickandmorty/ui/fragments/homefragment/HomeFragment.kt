@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.setFilter(DataFilter.All)
+//        viewModel.setFilter(DataFilter.All)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,6 +65,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
         }
 
+        viewModel.setFilter(DataFilter.All)
     }
 
 

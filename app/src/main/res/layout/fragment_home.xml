@@ -82,12 +82,11 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_marginTop="16dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeSearch"
-        app:spanCount="2"
         tools:listitem="@layout/fragment_home_rv" />
 
     <Button

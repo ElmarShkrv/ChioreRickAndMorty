@@ -53,6 +53,7 @@ class FilterFragment : BottomSheetDialogFragment() {
         binding.apply {
 
             btnMakeFilter.setOnClickListener {
+
                 if(chipgroupStatus.getTextChipChecked().isNotEmpty() && radiogroupGender.getTextButtonChecked().isNotEmpty()) {
                     viewModel.setFilter(DataFilter.StatusAndGender(
                         chipgroupStatus.getTextChipChecked(), radiogroupGender.getTextButtonChecked()
