@@ -22,6 +22,7 @@ class HomeFragmentPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Characters> {
         val pageNumber = params.key ?: 1
         return try {
+            delay(1_500)
             val response = rickAndMortyApi.getAllCharacters(status, gender, pageNumber)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
