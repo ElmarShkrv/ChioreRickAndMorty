@@ -22,9 +22,15 @@ import com.example.chiorerickandmorty.R
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeLoadStateAdapter
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeRvAdapter
 import com.example.chiorerickandmorty.data.model.Characters
+import com.example.chiorerickandmorty.databinding.FragmentFilterBinding
 import com.example.chiorerickandmorty.databinding.FragmentHomeBinding
+import com.example.chiorerickandmorty.extensions.getTextButtonChecked
+import com.example.chiorerickandmorty.extensions.getTextChipChecked
+import com.example.chiorerickandmorty.extensions.setButtonChecked
+import com.example.chiorerickandmorty.extensions.setChipChecked
 import com.example.chiorerickandmorty.util.DataFilter
 import com.example.chiorerickandmorty.util.DefaultItemDecorator
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -44,30 +50,62 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
-        return binding.root
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        viewModel.setFilter(DataFilter.All)
+        setToolbar(binding, inflater)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setUpHomeRv()
         initAdapter()
         observeFilteredData()
 
-
-        binding.filterIv.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
-        }
-
         viewModel.setFilter(DataFilter.All)
+
     }
 
+    private fun setToolbar(binding: FragmentHomeBinding, inflater: LayoutInflater) {
+        binding.filterIv.setOnClickListener {
+            showFilterDialog(inflater)
+        }
+    }
+
+    private fun showFilterDialog(inflater: LayoutInflater) {
+        val bindingForFilter = FragmentFilterBinding.inflate(inflater)
+        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+        dialog.setContentView(bindingForFilter.root)
+        initFilter(bindingForFilter)
+        dialog.show()
+    }
+
+    private fun initFilter(binding: FragmentFilterBinding) {
+        binding.apply {
+
+            binding.btnMakeFilter.setOnClickListener {
+
+                if (chipgroupStatus.getTextChipChecked()
+                        .isNotEmpty() && radiogroupGender.getTextButtonChecked().isNotEmpty()
+                ) {
+                    viewModel.setFilter(
+                        DataFilter.StatusAndGender(
+                            chipgroupStatus.getTextChipChecked(),
+                            radiogroupGender.getTextButtonChecked()
+                        )
+                    )
+                } else {
+                    if (chipgroupStatus.getTextChipChecked().isNotEmpty()) {
+                        viewModel.setFilter(DataFilter.Status(chipgroupStatus.getTextChipChecked()))
+                    } else {
+                        viewModel.setFilter(DataFilter.Gender(radiogroupGender.getTextButtonChecked()))
+                    }
+                }
+
+            }
+        }
+    }
 
     private fun observeFilteredData() {
         viewModel.test.observe(viewLifecycleOwner) { filteredData ->

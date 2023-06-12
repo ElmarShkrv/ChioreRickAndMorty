@@ -131,7 +131,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_make_filter"
+        android:id="@+id/btnMakeFilter"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

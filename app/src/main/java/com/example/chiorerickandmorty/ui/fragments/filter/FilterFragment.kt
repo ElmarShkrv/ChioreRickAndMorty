@@ -43,30 +43,30 @@ class FilterFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.apply {
-            viewModel.filterValue.observe(viewLifecycleOwner) { item ->
-                chipgroupStatus.setChipChecked(item[0])
-                radiogroupGender.setButtonChecked(item[1])
-            }
-        }
+//        binding.apply {
+//            viewModel.filterValue.observe(viewLifecycleOwner) { item ->
+//                chipgroupStatus.setChipChecked(item[0])
+//                radiogroupGender.setButtonChecked(item[1])
+//            }
+//        }
 
         binding.apply {
 
             btnMakeFilter.setOnClickListener {
 
-                if(chipgroupStatus.getTextChipChecked().isNotEmpty() && radiogroupGender.getTextButtonChecked().isNotEmpty()) {
-                    viewModel.setFilter(DataFilter.StatusAndGender(
-                        chipgroupStatus.getTextChipChecked(), radiogroupGender.getTextButtonChecked()
-                    ))
-                }else{
-                    if(chipgroupStatus.getTextChipChecked().isNotEmpty()){
-                        viewModel.setFilter(DataFilter.Status(chipgroupStatus.getTextChipChecked()))
-                    }else{
-                        viewModel.setFilter(DataFilter.Gender(radiogroupGender.getTextButtonChecked()))
-                    }
-                }
+//                if(chipgroupStatus.getTextChipChecked().isNotEmpty() && radiogroupGender.getTextButtonChecked().isNotEmpty()) {
+//                    viewModel.setFilter(DataFilter.StatusAndGender(
+//                        chipgroupStatus.getTextChipChecked(), radiogroupGender.getTextButtonChecked()
+//                    ))
+//                }else{
+//                    if(chipgroupStatus.getTextChipChecked().isNotEmpty()){
+//                        viewModel.setFilter(DataFilter.Status(chipgroupStatus.getTextChipChecked()))
+//                    }else{
+//                        viewModel.setFilter(DataFilter.Gender(radiogroupGender.getTextButtonChecked()))
+//                    }
+//                }
 
-                viewModel.filterValue.value = arrayOf(chipgroupStatus.checkedChipId, radiogroupGender.checkedRadioButtonId)
+//                viewModel.filterValue.value = arrayOf(chipgroupStatus.checkedChipId, radiogroupGender.checkedRadioButtonId)
 
                 findNavController().popBackStack(R.id.homeFragment, false)
             }

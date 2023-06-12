@@ -21,18 +21,11 @@ class HomeViewModel @Inject constructor(
     private val repository: HomeRepository,
 ) : ViewModel() {
 
-//    private var _test = MutableLiveData<PagingData<Characters>>()
-//    val test: LiveData<PagingData<Characters>> = _test
-
-//    var test = MutableLiveData<PagingData<Characters>>()
-
-
-
-     var filterValue = MutableLiveData<Array<Int>>()
-
-    init {
-        filterValue.value = arrayOf(0, 0)
-    }
+//     var filterValue = MutableLiveData<Array<Int>>()
+//
+//    init {
+//        filterValue.value = arrayOf(0, 0)
+//    }
 
     private val _filter = MutableLiveData<DataFilter>()
 

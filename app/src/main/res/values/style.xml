@@ -17,4 +17,14 @@
         <item name="android:layout_marginStart">12dp</item>
     </style>
 
+    <!--Filter bottom sheet dialog-->
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="behavior_peekHeight">400dp</item>
+    </style>
+
 </resources>
