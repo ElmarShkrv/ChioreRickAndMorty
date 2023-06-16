@@ -128,7 +128,8 @@ class HomeFragment : Fragment() {
         homeRvAdapter.addLoadStateListener { loadState ->
             binding.homeRv.isVisible = loadState.source.refresh is LoadState.NotLoading
             binding.shimmerLayout.isVisible = loadState.source.refresh is LoadState.Loading
-            binding.tvHomeSearch.isInvisible = loadState.source.refresh is LoadState.Loading
+//            binding.tvHomeSearch.isInvisible = loadState.source.refresh is LoadState.Loading
+            binding.mainToolbar.isInvisible = loadState.source.refresh is LoadState.Loading
             binding.filterIv.isInvisible = loadState.source.refresh is LoadState.Loading
             binding.retryBtn.isVisible = loadState.source.refresh is LoadState.Error
             handleError(loadState)

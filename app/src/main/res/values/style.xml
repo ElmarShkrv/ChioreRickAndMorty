@@ -27,4 +27,17 @@
         <item name="behavior_peekHeight">400dp</item>
     </style>
 
+    <style name="Theme.RickMortyViewer.ToolBar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">@drawable/toolbar_background_corner</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@color/background_secondary</item>
+        <item name="editTextBackground">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:editTextColor">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="fontFamily">@font/gilroy_extra_blod</item>
+    </style>
+
 </resources>
