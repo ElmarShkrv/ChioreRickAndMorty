@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -13,22 +13,23 @@
         android:layout_marginLeft="17dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="17dp"
-        android:elevation="4dp"
         android:backgroundTint="@color/background_secondary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="4dp"
+        android:theme="@style/Theme.RickMortyViewer.ToolBar"
         app:layout_constraintEnd_toEndOf="parent"
-        android:theme="@style/Theme.RickMortyViewer.ToolBar">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/homeSearchView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="70dp"
+            android:layout_marginEnd="106dp"
+            android:theme="@style/SearchViewStyle"
             app:closeIcon="@drawable/ic_baseline_close_24"
             app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
             app:queryHint="Search"
-            android:theme="@style/SearchViewStyle"
             app:searchIcon="@drawable/ic_search" />
 
         <ImageView
@@ -36,9 +37,31 @@
             android:layout_width="22dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
+            android:layout_marginEnd="36dp"
             android:background="@color/background_secondary"
-            android:layout_marginEnd="35dp"
             android:src="@drawable/ic_filter" />
+
+        <TextView
+            android:id="@+id/clearFilter"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/gilroy_extra_blod"
+            android:background="@color/background_secondary"
+            android:gravity="center"
+            android:text="Clear"
+            android:textColor="@color/character_dead" />
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/clearFilter"-->
+        <!--            android:layout_width="22dp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_gravity="end"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:background="@color/background_secondary"-->
+        <!--            android:src="@drawable/ic_clear_filter"-->
+        <!--            android:visibility="invisible" />-->
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -86,8 +109,8 @@
         android:id="@+id/homeRv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,13 +120,13 @@
 
     <Button
         android:id="@+id/retryBtn"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Retry"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Retry" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

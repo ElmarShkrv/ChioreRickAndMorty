@@ -1,19 +1,13 @@
 package com.example.chiorerickandmorty.ui.fragments.homefragment
 
-import android.provider.ContactsContract.Data
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.chiorerickandmorty.data.model.Characters
 import com.example.chiorerickandmorty.repository.HomeRepository
 import com.example.chiorerickandmorty.util.DataFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,11 +15,11 @@ class HomeViewModel @Inject constructor(
     private val repository: HomeRepository,
 ) : ViewModel() {
 
-//     var filterValue = MutableLiveData<Array<Int>>()
-//
-//    init {
-//        filterValue.value = arrayOf(0, 0)
-//    }
+    var isFilter = MutableLiveData<Boolean>()
+
+    init {
+        isFilter.value = false
+    }
 
     private val _filter = MutableLiveData<DataFilter>()
 
@@ -33,12 +27,12 @@ class HomeViewModel @Inject constructor(
         _filter.value = filter
     }
 
-    val test = Transformations.switchMap(_filter) { filter ->
+    val charactersData = Transformations.switchMap(_filter) { filter ->
         when(filter) {
-            DataFilter.All -> repository.getAllCharacters()
-            is DataFilter.StatusAndGender -> repository.getCharactersbyStatusAndGender(filter.status, filter.gender)
-            is DataFilter.Status -> repository.getCharactersByStatus(filter.status)
-            is DataFilter.Gender -> repository.getCharactersByGender(filter.gender)
+            DataFilter.All -> repository.getAllCharacters().also { isFilter.value = false }
+            is DataFilter.StatusAndGender -> repository.getCharactersbyStatusAndGender(filter.status, filter.gender).also { isFilter.value = true }
+            is DataFilter.Status -> repository.getCharactersByStatus(filter.status).also { isFilter.value = true }
+            is DataFilter.Gender -> repository.getCharactersByGender(filter.gender).also { isFilter.value = true }
         }.cachedIn(viewModelScope)
     }
 

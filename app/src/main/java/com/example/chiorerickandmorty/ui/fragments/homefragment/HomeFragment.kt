@@ -1,7 +1,6 @@
 package com.example.chiorerickandmorty.ui.fragments.homefragment
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,30 +10,20 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chiorerickandmorty.R
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeLoadStateAdapter
 import com.example.chiorerickandmorty.adapter.homeadapters.HomeRvAdapter
-import com.example.chiorerickandmorty.data.model.Characters
 import com.example.chiorerickandmorty.databinding.FragmentFilterBinding
 import com.example.chiorerickandmorty.databinding.FragmentHomeBinding
 import com.example.chiorerickandmorty.extensions.getTextButtonChecked
 import com.example.chiorerickandmorty.extensions.getTextChipChecked
-import com.example.chiorerickandmorty.extensions.setButtonChecked
-import com.example.chiorerickandmorty.extensions.setChipChecked
 import com.example.chiorerickandmorty.util.DataFilter
 import com.example.chiorerickandmorty.util.DefaultItemDecorator
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlin.math.log
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -63,14 +52,31 @@ class HomeFragment : Fragment() {
         initAdapter()
         observeFilteredData()
 
-        viewModel.setFilter(DataFilter.All)
+        getCharactersFromViewModel()
 
     }
 
     private fun setToolbar(binding: FragmentHomeBinding, inflater: LayoutInflater) {
-        binding.filterIv.setOnClickListener {
-            showFilterDialog(inflater)
+
+        binding.apply {
+
+            filterIv.setOnClickListener {
+                showFilterDialog(inflater)
+            }
+
+            viewModel.isFilter.observe(viewLifecycleOwner) { isFilter ->
+                clearFilter.visibility = if (isFilter) View.VISIBLE else View.INVISIBLE
+            }
+
+            clearFilter.setOnClickListener {
+                getCharactersFromViewModel()
+            }
+
         }
+    }
+
+    private fun getCharactersFromViewModel() {
+        viewModel.setFilter(DataFilter.All)
     }
 
     private fun showFilterDialog(inflater: LayoutInflater) {
@@ -84,7 +90,9 @@ class HomeFragment : Fragment() {
     private fun initFilter(binding: FragmentFilterBinding) {
         binding.apply {
 
-            binding.btnMakeFilter.setOnClickListener {
+            clearRadioCheck.setOnClickListener { radiogroupGender.clearCheck() }
+
+            btnMakeFilter.setOnClickListener {
 
                 if (chipgroupStatus.getTextChipChecked()
                         .isNotEmpty() && radiogroupGender.getTextButtonChecked().isNotEmpty()
@@ -108,7 +116,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeFilteredData() {
-        viewModel.test.observe(viewLifecycleOwner) { filteredData ->
+        viewModel.charactersData.observe(viewLifecycleOwner) { filteredData ->
             if (filteredData == null) {
                 Log.e(TAG, "filterdata equal null")
             }
