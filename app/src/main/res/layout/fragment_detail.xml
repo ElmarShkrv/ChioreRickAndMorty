@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/gradient_detail_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/characterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="344dp"
+            android:fontFamily="@font/gilroy_extra_blod"
+            android:maxLines="1"
+            android:text="Justin Roiland"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/charachterStatus"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/circle"
+            app:layout_constraintStart_toStartOf="@+id/characterName"
+            app:layout_constraintTop_toBottomOf="@+id/characterName" />
+
+        <TextView
+            android:id="@+id/characterStatusAndGenderTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/gilroy_light"
+            android:text="Alive - Male"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/charachterStatus"
+            app:layout_constraintStart_toEndOf="@+id/charachterStatus"
+            app:layout_constraintTop_toTopOf="@+id/charachterStatus" />
+
+        <ImageButton
+            android:id="@+id/shareCharachterButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/circle_button"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@+id/charachterStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/characterName" />
+
+        <TextView
+            android:id="@+id/episodeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/gilroy_extra_blod"
+            android:maxLines="1"
+            android:text="Episodes"
+            android:textColor="@color/colorAccent"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="@+id/charachterStatus"
+            app:layout_constraintTop_toBottomOf="@+id/charachterStatus" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/episodeRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/episodeTitle"
+            app:layout_constraintTop_toBottomOf="@+id/episodeTitle"
+            tools:listitem="@layout/episode_row" />
+
+        <View
+            android:id="@+id/moreInfoLine"
+            android:layout_width="220dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="@id/episodeTitle"
+            app:layout_constraintTop_toBottomOf="@+id/episodeRv" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:fontFamily="@font/gilroy_extra_blod"
+            android:text="More info"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@id/moreInfoLine"
+            app:layout_constraintStart_toEndOf="@+id/moreInfoLine"
+            app:layout_constraintTop_toTopOf="@+id/moreInfoLine" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/gilroy_light"
+            android:text="Rick and Morty is an American adult animated science fiction sitcom created by Justin Roiland and Dan Harmon for Cartoon Network's nighttime programming block Adult Swim. The series follows the misadventures of Rick Sanchez, a cynical mad scientist, and his good-hearted but fretful grandson Morty Smith, who split their time between domestic life and interdimensional adventures that take place across an infinite number of realities, often traveling to other planets and dimensions through portals and on Rick's flying saucer. The general concept of Rick and Morty relies on two conflicting scenarios: domestic family drama, and a misanthropic grandfather dragging his grandson into hijinks."
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/shareCharachterButton"
+            app:layout_constraintStart_toStartOf="@id/episodeTitle"
+            app:layout_constraintTop_toBottomOf="@+id/moreInfoLine" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
