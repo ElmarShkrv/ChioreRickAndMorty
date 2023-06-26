@@ -168,8 +168,8 @@ class HomeFragment : Fragment() {
 
             homeRv.addItemDecoration(
                 DefaultItemDecorator(
-                    resources.getDimensionPixelSize(R.dimen.horizontal_margin),
-                    resources.getDimensionPixelSize(R.dimen.vertical_margin)
+                    resources.getDimensionPixelSize(R.dimen.horizontal_margin_for_vertical),
+                    resources.getDimensionPixelSize(R.dimen.vertical_margin_for_horizontal)
                 )
             )
         }

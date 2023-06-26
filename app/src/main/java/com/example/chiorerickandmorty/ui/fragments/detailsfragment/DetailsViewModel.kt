@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.example.chiorerickandmorty.data.model.Characters
 import com.example.chiorerickandmorty.repository.DetilsRepository
 import com.example.chiorerickandmorty.util.Resource
@@ -27,5 +28,7 @@ class DetailsViewModel @Inject constructor(
             }
         }
     }
+
+    val listEpisodes = repository.getAllEpisodes().cachedIn(viewModelScope)
 
 }
