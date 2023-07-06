@@ -1,12 +1,16 @@
 package com.example.chiorerickandmorty.repository
 
+import CharachterMapper
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.chiorerickandmorty.data.model.Characters
+import com.example.chiorerickandmorty.data.model.Result
 import com.example.chiorerickandmorty.data.remote.RickAndMortyApi
+import com.example.chiorerickandmorty.domain.models.Character
 import com.example.chiorerickandmorty.paging.EpisodesPagingSource
 import com.example.chiorerickandmorty.util.Resource
+import kotlinx.coroutines.delay
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -29,14 +33,44 @@ class DetilsRepository @Inject constructor(
         }
     }
 
-    fun getAllEpisodes() =
-        Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                maxSize = 100,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = {EpisodesPagingSource(rickAndMortyApi)}
-        ).liveData
+    suspend fun getCharacterByIdForEpisodes(characterId: Int): Character? {
+        val request = rickAndMortyApi.getCharacterById(characterId)
+
+        if (!request.isSuccessful) {
+            return null
+        }
+
+        val networkEpiosde = getEpiosdeFromChaacterResponse(request.body()!!)
+        return CharachterMapper.buildFrom(
+            response = request.body()!!,
+            episodes = networkEpiosde
+        )
+    }
+
+    private suspend fun getEpiosdeFromChaacterResponse(
+        characterResponse: Characters
+    ): List<Result> {
+        val episodeRange = characterResponse.episode.map {
+            it.substring(it.lastIndexOf("/") + 1)
+        }.toString()
+
+        val request = rickAndMortyApi.getEpisodeRange(episodeRange)
+
+        if (!request.isSuccessful) {
+            return emptyList()
+        }
+
+        return request.body()!!
+    }
+
+//    fun getAllEpisodes() =
+//        Pager(
+//            config = PagingConfig(
+//                pageSize = 20,
+//                maxSize = 100,
+//                enablePlaceholders = false
+//            ),
+//            pagingSourceFactory = {EpisodesPagingSource(rickAndMortyApi)}
+//        ).liveData
 
 }
