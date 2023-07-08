@@ -1,16 +1,15 @@
 package com.example.chiorerickandmorty.ui.fragments.detailsfragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.chiorerickandmorty.R
@@ -153,6 +152,15 @@ class DetailsFragment : Fragment() {
                     charachterStatus.setBackgroundResource(R.color.character_else)
                 }
 
+            }
+
+            shareCharachterButton.setOnClickListener {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, detailsResponse.url)
+
+                val chooser = Intent.createChooser(intent, "Share using...")
+                startActivity(chooser)
             }
 
         }
