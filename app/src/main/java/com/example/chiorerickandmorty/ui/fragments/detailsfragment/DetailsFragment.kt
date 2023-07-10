@@ -47,13 +47,13 @@ class DetailsFragment : Fragment() {
         viewModel.characterById(args.characterId)
         viewModel.getCharacterEpisodes(args.characterId)
         observeDetailsResponse()
+        observeDetailsEpiosdeResponse()
         setupRv()
 
     }
 
-    private fun setupRv() {
+    private fun observeDetailsEpiosdeResponse() {
         lifecycleScope.launch {
-
             viewModel.characterEpisodes.observe(viewLifecycleOwner) { characterEpisodeList ->
                 when (characterEpisodeList) {
                     is Resource.Loading -> {
@@ -64,24 +64,11 @@ class DetailsFragment : Fragment() {
                     }
 
                     is Resource.Success -> {
-
                         binding.episodeProgressBar.visibility = View.INVISIBLE
-
                         characterEpisodeList.data?.let { detailsResponse ->
                             detailsRvAdapter =
-                                DetailsRvAdapter(characterEpisodeList.data.episodeList)
-                            binding.apply {
-                                episodeRv.layoutManager = LinearLayoutManager(
-                                    requireContext(), LinearLayoutManager.HORIZONTAL, false
-                                )
-                                episodeRv.adapter = detailsRvAdapter
-                                episodeRv.addItemDecoration(
-                                    DefaultItemDecorator(
-                                        resources.getDimensionPixelSize(R.dimen.horizontal_margin_for_horizontal),
-                                        resources.getDimensionPixelSize(R.dimen.vertical_margin_for_vertical)
-                                    )
-                                )
-                            }
+                                DetailsRvAdapter(detailsResponse.episodeList)
+                            binding.episodeRv.adapter = detailsRvAdapter
                         }
                     }
 
@@ -96,8 +83,21 @@ class DetailsFragment : Fragment() {
             }
 
         }
+    }
 
+    private fun setupRv() {
+        binding.apply {
+            episodeRv.layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            )
 
+            episodeRv.addItemDecoration(
+                DefaultItemDecorator(
+                    resources.getDimensionPixelSize(R.dimen.horizontal_margin_for_horizontal),
+                    resources.getDimensionPixelSize(R.dimen.vertical_margin_for_vertical)
+                )
+            )
+        }
     }
 
     private fun observeDetailsResponse() {

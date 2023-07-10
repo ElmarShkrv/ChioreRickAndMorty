@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeRvAdapter: HomeRvAdapter
     private val viewModel by viewModels<HomeViewModel>()
-    private val TAG = "Home"
+    private val TAG = "HomeFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,

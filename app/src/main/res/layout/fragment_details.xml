@@ -96,6 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
+            android:indeterminateTint="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/moreInfoLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +114,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/episodeTitle"
             app:layout_constraintTop_toBottomOf="@+id/episodeTitle"
-            tools:listitem="@layout/episode_row" />
+            tools:listitem="@layout/details_episode_row" />
 
         <View
             android:id="@+id/moreInfoLine"

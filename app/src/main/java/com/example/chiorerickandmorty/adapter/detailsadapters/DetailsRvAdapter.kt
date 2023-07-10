@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chiorerickandmorty.data.model.Result
+import com.example.chiorerickandmorty.databinding.DetailsEpisodeRowBinding
 import com.example.chiorerickandmorty.databinding.EpisodeRowBinding
 import com.example.chiorerickandmorty.domain.models.Episode
 
 class DetailsRvAdapter(var episodeList: List<Episode>) :
     RecyclerView.Adapter<DetailsRvAdapter.DetailViewHolder>() {
 
-    class DetailViewHolder(val binding: EpisodeRowBinding) : RecyclerView.ViewHolder(binding.root)
+    class DetailViewHolder(val binding: DetailsEpisodeRowBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
-        val binding = EpisodeRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = DetailsEpisodeRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DetailViewHolder(binding)
     }
 
