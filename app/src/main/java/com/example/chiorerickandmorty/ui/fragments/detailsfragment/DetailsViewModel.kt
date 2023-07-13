@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.example.chiorerickandmorty.domain.models.Character
+import com.example.chiorerickandmorty.domain.models.Episode
 import kotlinx.coroutines.delay
 
 @HiltViewModel
@@ -36,10 +37,6 @@ class DetailsViewModel @Inject constructor(
     private val _characterEpisodes = MutableLiveData<Resource<Character?>>(Resource.Loading())
     val characterEpisodes: LiveData<Resource<Character?>> = _characterEpisodes
 
-    init {
-        _characterEpisodes.value = Resource.Loading()
-    }
-
     fun getCharacterEpisodes(characterId: Int) {
 
         viewModelScope.launch{
@@ -50,6 +47,24 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
-//    val listEpisodes = repository.getAllEpisodes().cachedIn(viewModelScope)
+    private val _characterByEpisodes = MutableLiveData<Resource<Episode?>>(Resource.Loading())
+    val characterByEpisodes: LiveData<Resource<Episode?>> = _characterByEpisodes
+
+    fun getCharachetrByEpisode(episodeId: Int) {
+
+        viewModelScope.launch {
+            val response = repository.getEpiosdeByIdForCharachters(episodeId)
+
+            _characterByEpisodes.value = Resource.Success(response)
+        }
+    }
+
+
+    init {
+        _characterEpisodes.value = Resource.Loading()
+        _characterByEpisodes.value = Resource.Loading()
+    }
+
+
 
 }

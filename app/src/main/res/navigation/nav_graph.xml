@@ -29,7 +29,6 @@
         tools:layout="@layout/fragment_favorite"/>
     <dialog
         android:id="@+id/filterFragment"
-        android:name="com.example.chiorerickandmorty.ui.fragments.filter.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter" />
     <fragment

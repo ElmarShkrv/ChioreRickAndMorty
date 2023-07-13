@@ -46,6 +46,7 @@ class DetailsFragment : Fragment() {
 
         viewModel.characterById(args.characterId)
         viewModel.getCharacterEpisodes(args.characterId)
+//        viewModel.getCharachetrByEpisode(args)
         observeDetailsResponse()
         observeDetailsEpiosdeResponse()
         setupRv()
