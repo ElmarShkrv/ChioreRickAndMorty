@@ -2,11 +2,13 @@ package com.example.chiorerickandmorty.adapter.detailsadapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chiorerickandmorty.data.model.Result
 import com.example.chiorerickandmorty.databinding.DetailsEpisodeRowBinding
 import com.example.chiorerickandmorty.databinding.EpisodeRowBinding
 import com.example.chiorerickandmorty.domain.models.Episode
+import com.example.chiorerickandmorty.ui.fragments.detailsfragment.DetailsFragmentDirections
 
 class DetailsRvAdapter(var episodeList: List<Episode>) :
     RecyclerView.Adapter<DetailsRvAdapter.DetailViewHolder>() {
@@ -23,11 +25,11 @@ class DetailsRvAdapter(var episodeList: List<Episode>) :
 
         holder.binding.apply {
 
-//            holder.itemView.setOnClickListener { view ->
-//                val action = DetailsFragmentDirections
-//                    .actionDetailsFragmentToBottomSheetFragment(currentItem.id)
-//                Navigation.findNavController(view).navigate(action)
-//            }
+            holder.itemView.setOnClickListener { view ->
+                val action = DetailsFragmentDirections
+                    .actionDetailsFragmentToEpisodeCharactersBottomSheet(currentItem.id)
+                Navigation.findNavController(view).navigate(action)
+            }
 
             episodeName.text = currentItem.name
             airDate.text = "Air Date - ${currentItem.airDate}"

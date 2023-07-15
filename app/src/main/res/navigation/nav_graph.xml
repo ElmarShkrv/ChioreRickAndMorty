@@ -21,7 +21,11 @@
         android:id="@+id/episodeFragment"
         android:name="com.example.chiorerickandmorty.ui.fragments.episodefragment.EpisodeFragment"
         android:label="EpisodeFragment"
-        tools:layout="@layout/fragment_episode"/>
+        tools:layout="@layout/fragment_episode">
+        <action
+            android:id="@+id/action_episodeFragment_to_episodeCharactersBottomSheet"
+            app:destination="@id/episodeCharactersBottomSheet" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.chiorerickandmorty.ui.fragments.favoritefragment.FavoriteFragment"
@@ -39,5 +43,17 @@
         <argument
             android:name="characterId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsFragment_to_episodeCharactersBottomSheet"
+            app:destination="@id/episodeCharactersBottomSheet" />
     </fragment>
+    <dialog
+        android:id="@+id/episodeCharactersBottomSheet"
+        android:name="com.example.chiorerickandmorty.ui.fragments.episodecharctersbottomsheet.EpisodeCharactersBottomSheet"
+        android:label="EpisodeCharactersBottomSheet"
+        tools:layout="@layout/bottomsheet_episode_characters">
+        <argument
+            android:name="episodeId"
+            app:argType="integer" />
+    </dialog>
 </navigation>
