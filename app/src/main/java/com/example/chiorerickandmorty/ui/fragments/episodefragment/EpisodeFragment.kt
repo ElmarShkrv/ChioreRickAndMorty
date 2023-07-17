@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.example.chiorerickandmorty.R
-import com.example.chiorerickandmorty.adapter.episodesadapters.EpisodeRvAdapter
+import com.example.chiorerickandmorty.adapter.EpisodeRvAdapter
 import com.example.chiorerickandmorty.databinding.FragmentEpisodeBinding
 import com.example.chiorerickandmorty.util.DefaultItemDecorator
 import dagger.hilt.android.AndroidEntryPoint

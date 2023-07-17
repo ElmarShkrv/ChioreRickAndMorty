@@ -35,36 +35,6 @@ class DetilsRepository @Inject constructor(
         }
     }
 
-    suspend fun getEpiosdeByIdForCharachters(episodeId: Int): Episode? {
-        val request = rickAndMortyApi.getEpisodeById(episodeId)
-
-        if (!request.isSuccessful) {
-            return null
-        }
-
-        val networkCharacter = getCharacterFromEpisodeResponse(request.body()!!)
-        return EpisodeMapper.buildFrom(
-            networkEpiosde = request.body()!!,
-            characters = networkCharacter
-        )
-    }
-
-    private suspend fun getCharacterFromEpisodeResponse(
-        epiosdeResponse: Result
-    ): List<Characters> {
-        val characterRange = epiosdeResponse.characters.map {
-            it.substring(it.lastIndexOf("/") + 1)
-        }.toString()
-
-        val request = rickAndMortyApi.getCharacterRange(characterRange)
-
-        if (!request.isSuccessful) {
-            return emptyList()
-        }
-
-        return request.body()!!
-    }
-
     suspend fun getCharacterByIdForEpisodes(characterId: Int): Character? {
         val request = rickAndMortyApi.getCharacterById(characterId)
 

@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/episodeNumberTextView"
+        android:id="@+id/episodeNumberTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -31,7 +31,7 @@
         tools:text="Season 1 Episode 1" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/episodeNameTextView"
+        android:id="@+id/episodeNameTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,18 +41,18 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/episodeNumberTextView"
+        app:layout_constraintTop_toBottomOf="@id/episodeNumberTv"
         tools:text="Pilot" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/episodeAirDateTextView"
+        android:id="@+id/episodeAirDateTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@color/colorAccent"
         android:textSize="14sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@id/episodeNameTextView"
+        app:layout_constraintEnd_toEndOf="@id/episodeNameTv"
         app:layout_constraintTop_toBottomOf="@+id/topLine"
         tools:text="December 2, 2013" />
 
@@ -62,7 +62,7 @@
         android:layout_height="1px"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/labelTextView"
-        app:layout_constraintTop_toBottomOf="@id/episodeNameTextView" />
+        app:layout_constraintTop_toBottomOf="@id/episodeNameTv" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/labelTextView"
@@ -73,14 +73,14 @@
         android:textColor="@color/colorAccent"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/episodeNameTextView"
-        app:layout_constraintTop_toBottomOf="@id/episodeNameTextView" />
+        app:layout_constraintStart_toStartOf="@id/episodeNameTv"
+        app:layout_constraintTop_toBottomOf="@id/episodeNameTv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bottomRv"
         android:layout_width="0dp"
         android:layout_height="220dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:overScrollMode="never"
         android:paddingHorizontal="16dp"
         app:itemSpacing="8dp"

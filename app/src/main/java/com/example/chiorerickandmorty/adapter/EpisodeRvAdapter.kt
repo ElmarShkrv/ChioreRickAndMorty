@@ -1,4 +1,4 @@
-package com.example.chiorerickandmorty.adapter.episodesadapters
+package com.example.chiorerickandmorty.adapter
 
 
 import android.view.LayoutInflater

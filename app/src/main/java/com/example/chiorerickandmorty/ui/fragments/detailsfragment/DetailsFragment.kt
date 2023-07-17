@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.chiorerickandmorty.R
-import com.example.chiorerickandmorty.adapter.detailsadapters.DetailsRvAdapter
+import com.example.chiorerickandmorty.adapter.DetailsRvAdapter
 import com.example.chiorerickandmorty.data.model.Characters
 import com.example.chiorerickandmorty.databinding.FragmentDetailsBinding
 import com.example.chiorerickandmorty.enum.CharacterStatusEnums
