@@ -1,4 +1,4 @@
-package com.example.chiorerickandmorty.ui.fragments.favoritefragment
+package com.example.chiorerickandmorty.ui.fragments.locationfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.chiorerickandmorty.databinding.FragmentFavoriteBinding
-import com.example.chiorerickandmorty.databinding.FragmentHomeBinding
 
-class FavoriteFragment: Fragment() {
+class LocationFragment: Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
 

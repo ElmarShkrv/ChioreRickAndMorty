@@ -50,17 +50,17 @@ class EpisodeCharactersBottomSheet : BottomSheetDialogFragment() {
                 when (characterEpisodeList) {
                     is Resource.Loading -> {
                         characterEpisodeList.message?.let { message ->
-//                            binding.episodeProgressBar.visibility = View.VISIBLE
+                            binding.bottomSheetProgressBar.visibility = View.VISIBLE
                             Log.e(TAG, "An error occured: $message")
                         }
                     }
 
                     is Resource.Success -> {
-//                        binding.episodeProgressBar.visibility = View.INVISIBLE
                         characterEpisodeList.data?.let { detailsResponse ->
                             episodeCharactersRvAdapter =
                                 EpisodeCharactersRvAdapter(detailsResponse.characters)
                             binding.apply {
+                                bottomSheetProgressBar.visibility = View.INVISIBLE
                                 bottomRv.adapter = episodeCharactersRvAdapter
                                 episodeNumberTv.text = detailsResponse.episode
                                 episodeAirDateTv.text = detailsResponse.airDate
@@ -71,7 +71,7 @@ class EpisodeCharactersBottomSheet : BottomSheetDialogFragment() {
 
                     is Resource.Error -> {
                         characterEpisodeList.message?.let { message ->
-//                            binding.episodeProgressBar.visibility = View.INVISIBLE
+                            binding.bottomSheetProgressBar.visibility = View.INVISIBLE
                             Log.e(TAG, "An error occured: $message")
                         }
                     }

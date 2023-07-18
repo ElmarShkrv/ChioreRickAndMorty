@@ -3,11 +3,14 @@ package com.example.chiorerickandmorty.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chiorerickandmorty.data.model.Result
 import com.example.chiorerickandmorty.databinding.EpisodeRowBinding
+import com.example.chiorerickandmorty.ui.fragments.detailsfragment.DetailsFragmentDirections
+import com.example.chiorerickandmorty.ui.fragments.episodefragment.EpisodeFragmentDirections
 
 class EpisodeRvAdapter() :
     PagingDataAdapter<Result, EpisodeRvAdapter.EpisodeViewHolder>(DiffUtilCallBack()) {
@@ -18,6 +21,11 @@ class EpisodeRvAdapter() :
         fun bind(episode: Result) {
             with(binding) {
 
+                itemView.setOnClickListener { view ->
+                    val action = EpisodeFragmentDirections
+                        .actionEpisodeFragmentToEpisodeCharactersBottomSheet(episode.id)
+                    Navigation.findNavController(view).navigate(action)
+                }
 
                 episodeName.text = episode.name
                 airDate.text = "Air Date - ${episode.air_date}"

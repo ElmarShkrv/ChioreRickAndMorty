@@ -7,6 +7,17 @@
     android:background="@color/background"
     android:paddingBottom="48dp">
 
+    <ProgressBar
+        android:id="@+id/bottomSheetProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        android:indeterminateTint="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="@+id/bottomRv"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomRv" />
+
     <ImageView
         android:id="@+id/topLine"
         android:layout_width="88dp"

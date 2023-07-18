@@ -12,8 +12,8 @@
         android:title="Episodes" />
 
     <item
-        android:id="@+id/favoriteFragment"
-        android:icon="@drawable/favorite_icon"
-        android:title="Favorite" />
+        android:id="@+id/locationFragment"
+        android:icon="@drawable/ic_location"
+        android:title="Location" />
 
 </menu>

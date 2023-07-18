@@ -27,8 +27,8 @@
             app:destination="@id/episodeCharactersBottomSheet" />
     </fragment>
     <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.example.chiorerickandmorty.ui.fragments.favoritefragment.FavoriteFragment"
+        android:id="@+id/locationFragment"
+        android:name="com.example.chiorerickandmorty.ui.fragments.locationfragment.LocationFragment"
         android:label="FavoriteFragment"
         tools:layout="@layout/fragment_favorite"/>
     <dialog
