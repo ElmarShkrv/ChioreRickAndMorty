@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/episodeName"
+        android:id="@+id/locationNameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/gilroy_extra_blod"
         android:maxLines="1"
-        android:text="The Ricklantis Mixup"
+        android:text="Earth"
         android:textColor="@color/colorAccent"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,32 +30,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/airDate"
+        android:id="@+id/typeTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/gilroy_light"
+        android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/episodeName"
-        tools:text="Air Date - December 2, 2013" />
+        app:layout_constraintTop_toBottomOf="@+id/locationNameTv"
+        tools:text="Planet" />
 
     <TextView
-        android:id="@+id/episodeId"
+        android:id="@+id/dimensionTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/gilroy_light"
+        android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/airDate"
-        tools:text="S01E01" />
+        app:layout_constraintTop_toBottomOf="@+id/typeTv"
+        tools:text="Dimension C-137" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

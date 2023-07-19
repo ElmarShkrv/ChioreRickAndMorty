@@ -30,7 +30,7 @@
         android:id="@+id/locationFragment"
         android:name="com.example.chiorerickandmorty.ui.fragments.locationfragment.LocationFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favorite"/>
+        tools:layout="@layout/fragment_location"/>
     <dialog
         android:id="@+id/filterFragment"
         android:label="fragment_filter"

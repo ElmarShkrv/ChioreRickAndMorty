@@ -36,11 +36,11 @@ class EpisodeFragment : Fragment() {
 
         setUpEpiosdeRv()
         observeEpisodeData()
-        initAdapter()
+        setupLoading()
 
     }
 
-    private fun initAdapter() {
+    private fun setupLoading() {
         episodeRvAdapter.addLoadStateListener { loadState ->
             binding.apply {
                 episodeRv.isVisible = loadState.source.refresh is LoadState.NotLoading

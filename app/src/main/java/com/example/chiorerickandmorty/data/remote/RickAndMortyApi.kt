@@ -3,8 +3,8 @@ package com.example.chiorerickandmorty.data.remote
 import com.example.chiorerickandmorty.data.model.CharacterResponse
 import com.example.chiorerickandmorty.data.model.Characters
 import com.example.chiorerickandmorty.data.model.EpisodesResponse
+import com.example.chiorerickandmorty.data.model.location.LocationResponse
 import com.example.chiorerickandmorty.data.model.Result
-import com.example.chiorerickandmorty.domain.models.Character
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -28,6 +28,11 @@ interface RickAndMortyApi {
     suspend fun getAllEpisodes(
         @Query("page") page: Int? = null
     ) : Response<EpisodesResponse>
+
+    @GET("location/")
+    suspend fun getAllLocations(
+        @Query("page") page: Int? = null
+    ) : Response<LocationResponse>
 
     @GET("episode/{episode-range}")
     suspend fun getEpisodeRange(
