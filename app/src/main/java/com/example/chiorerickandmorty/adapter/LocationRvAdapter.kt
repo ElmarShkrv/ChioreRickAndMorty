@@ -3,11 +3,13 @@ package com.example.chiorerickandmorty.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chiorerickandmorty.data.model.location.Result
 import com.example.chiorerickandmorty.databinding.LocationRowBinding
+import com.example.chiorerickandmorty.ui.fragments.locationfragment.LocationFragmentDirections
 
 class LocationRvAdapter() :
     PagingDataAdapter<Result, LocationRvAdapter.LocationViewHolder>(DiffUtilCallBack()) {
@@ -18,11 +20,11 @@ class LocationRvAdapter() :
         fun bind(location: Result) {
             with(binding) {
 
-//                itemView.setOnClickListener { view ->
-//                    val action = EpisodeFragmentDirections
-//                        .actionEpisodeFragmentToEpisodeCharactersBottomSheet(episode.id)
-//                    Navigation.findNavController(view).navigate(action)
-//                }
+                itemView.setOnClickListener { view ->
+                    val action = LocationFragmentDirections
+                        .actionLocationFragmentToLocationCharactersBottomSheet(location.id)
+                    Navigation.findNavController(view).navigate(action)
+                }
 
                 locationNameTv.text = location.name
                 typeTv.text = location.type

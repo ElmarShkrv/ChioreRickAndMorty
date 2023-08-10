@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.chiorerickandmorty.adapter.DetailsRvAdapter
-import com.example.chiorerickandmorty.adapter.EpisodeCharactersRvAdapter
+import com.example.chiorerickandmorty.adapter.BottomSheetCharactersRvAdapter
 import com.example.chiorerickandmorty.databinding.BottomsheetEpisodeCharactersBinding
 import com.example.chiorerickandmorty.util.Resource
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -22,7 +21,7 @@ class EpisodeCharactersBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: BottomsheetEpisodeCharactersBinding
     private val args by navArgs<EpisodeCharactersBottomSheetArgs>()
     private val viewModel by viewModels<EpisodeCharactersViewModel>()
-    private lateinit var episodeCharactersRvAdapter: EpisodeCharactersRvAdapter
+    private lateinit var bottomSheetCharactersRvAdapter: BottomSheetCharactersRvAdapter
 
     private val TAG = "EpisodeCharactersBottomSheet"
 
@@ -57,11 +56,11 @@ class EpisodeCharactersBottomSheet : BottomSheetDialogFragment() {
 
                     is Resource.Success -> {
                         characterEpisodeList.data?.let { detailsResponse ->
-                            episodeCharactersRvAdapter =
-                                EpisodeCharactersRvAdapter(detailsResponse.characters)
+                            bottomSheetCharactersRvAdapter =
+                                BottomSheetCharactersRvAdapter(detailsResponse.characters)
                             binding.apply {
                                 bottomSheetProgressBar.visibility = View.INVISIBLE
-                                bottomRv.adapter = episodeCharactersRvAdapter
+                                bottomRv.adapter = bottomSheetCharactersRvAdapter
                                 episodeNumberTv.text = detailsResponse.episode
                                 episodeAirDateTv.text = detailsResponse.airDate
                                 episodeNameTv.text = detailsResponse.name

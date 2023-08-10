@@ -30,7 +30,11 @@
         android:id="@+id/locationFragment"
         android:name="com.example.chiorerickandmorty.ui.fragments.locationfragment.LocationFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_location"/>
+        tools:layout="@layout/fragment_location">
+        <action
+            android:id="@+id/action_locationFragment_to_locationCharactersBottomSheet"
+            app:destination="@id/locationCharactersBottomSheet" />
+    </fragment>
     <dialog
         android:id="@+id/filterFragment"
         android:label="fragment_filter"
@@ -54,6 +58,15 @@
         tools:layout="@layout/bottomsheet_episode_characters">
         <argument
             android:name="episodeId"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/locationCharactersBottomSheet"
+        android:name="com.example.chiorerickandmorty.ui.fragments.locationcharactersbottomsheet.LocationCharactersBottomSheet"
+        android:label="LocationCharactersBottomSheet"
+        tools:layout="@layout/bottomsheet_location_characters">
+        <argument
+            android:name="locationId"
             app:argType="integer" />
     </dialog>
 </navigation>

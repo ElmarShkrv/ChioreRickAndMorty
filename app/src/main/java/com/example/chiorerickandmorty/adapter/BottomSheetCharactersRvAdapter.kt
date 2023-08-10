@@ -9,8 +9,8 @@ import com.example.chiorerickandmorty.R
 import com.example.chiorerickandmorty.databinding.BottomRowBinding
 import com.example.chiorerickandmorty.domain.models.Character
 
-class EpisodeCharactersRvAdapter(var characterList: List<Character>) :
-    RecyclerView.Adapter<EpisodeCharactersRvAdapter.DetailViewHolder>() {
+class BottomSheetCharactersRvAdapter(var characterList: List<Character>) :
+    RecyclerView.Adapter<BottomSheetCharactersRvAdapter.DetailViewHolder>() {
 
     class DetailViewHolder(val binding: BottomRowBinding) : RecyclerView.ViewHolder(binding.root)
 

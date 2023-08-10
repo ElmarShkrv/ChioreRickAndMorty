@@ -49,4 +49,9 @@ interface RickAndMortyApi {
         @Path("character-range") characterId: String
     ): Response<List<Characters>>
 
+    @GET("location/{location-id}")
+    suspend fun getLocationById(
+        @Path("location-id") locationID: Int
+    ): Response<com.example.chiorerickandmorty.data.model.location.Result>
+
 }
