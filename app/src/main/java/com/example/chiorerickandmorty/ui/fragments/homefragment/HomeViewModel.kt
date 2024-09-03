@@ -1,10 +1,20 @@
 package com.example.chiorerickandmorty.ui.fragments.homefragment
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.liveData
+import com.example.chiorerickandmorty.data.model.Characters
+import com.example.chiorerickandmorty.data.remote.RickAndMortyApi
+import com.example.chiorerickandmorty.paging.HomeFragmentSearchPagingSource
 import com.example.chiorerickandmorty.repository.HomeRepository
 import com.example.chiorerickandmorty.util.DataFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +23,10 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: HomeRepository,
+    private val rickAndMortyApi: RickAndMortyApi
 ) : ViewModel() {
+
+    private val currentQuery = MutableLiveData<String>()
 
     var isFilter = MutableLiveData<Boolean>()
 
@@ -36,64 +49,24 @@ class HomeViewModel @Inject constructor(
         }.cachedIn(viewModelScope)
     }
 
-//    fun getAllCharacters(): LiveData<PagingData<Characters>> {
-//        val response = repository.getAllCharacters().cachedIn(viewModelScope)
-//        test = response as MutableLiveData<PagingData<Characters>>
-//        return response
-//    }
-//
-//    fun getByStatusAndGender(status: String, gender: String): LiveData<PagingData<Characters>> {
-//        val response =
-//            repository.getCharactersbyStatusAndGender(status, gender).cachedIn(viewModelScope)
-//        test = response as MutableLiveData<PagingData<Characters>>
-//        return response
-//    }
-//
-//    fun getByStatus(status: String): LiveData<PagingData<Characters>> {
-//        val response = repository.getCharactersByStatus(status).cachedIn(viewModelScope)
-//        test = response as MutableLiveData<PagingData<Characters>>
-//        return response
-//    }
-//
-//    fun getByGender(gender: String): LiveData<PagingData<Characters>> {
-//        val response = repository.getCharactersByGender(gender).cachedIn(viewModelScope)
-//        test = response as MutableLiveData<PagingData<Characters>>
-//        return response
-//    }
+    val searchResults: LiveData<PagingData<Characters>> = currentQuery.switchMap { query ->
+        Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                prefetchDistance = 5,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { HomeFragmentSearchPagingSource(rickAndMortyApi, query) }
+        ).flow.cachedIn(viewModelScope).asLiveData()
+    }
 
+    fun setSearchQuery(query: String) {
+        currentQuery.value = query
+    }
 
-//     fun getAllCharacters() {
-//        viewModelScope.launch {
-//            val charactersData = repository.getAllCharacters().cachedIn(viewModelScope)
-//            _test.value = charactersData.value
-//        }
-//    }
-//
-//    fun getByStatusAndGender(status: String, gender: String) {
-//        viewModelScope.launch {
-//            val charactersData = repository.getCharactersbyStatusAndGender(
-//                status, gender
-//            ).cachedIn(viewModelScope)
-//            _test.value = charactersData.value
-//        }
-//    }
-//
-//    fun getByStatus(status: String) {
-//        viewModelScope.launch {
-//            val charactersData =
-//                repository.getCharactersByStatus(status).cachedIn(viewModelScope)
-//
-//            _test.value = charactersData.value
-//        }
-//    }
-//
-//    fun getByGender(gender: String) {
-//        viewModelScope.launch {
-//            val charactersData =
-//                repository.getCharactersByGender(gender).cachedIn(viewModelScope)
-//
-//            _test.value = charactersData.value
-//        }
-//    }
+    fun clearFilters() {
+        _filter.value = DataFilter.All
+        isFilter.value = false
+    }
 
 }

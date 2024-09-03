@@ -19,6 +19,12 @@ interface RickAndMortyApi {
         @Query("page") page: Int? = null,
     ): Response<CharacterResponse>
 
+    @GET("character/")
+    suspend fun getCharactersBySearch(
+        @Query("page") page: Int? = null,
+        @Query("name") status: String?,
+    ): Response<CharacterResponse>
+
     @GET("character/{character-id}")
     suspend fun getCharacterById(
         @Path("character-id") characterId : Int

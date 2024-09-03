@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -54,6 +55,26 @@ class HomeFragment : Fragment() {
 
         getCharactersFromViewModel()
 
+        getCharactersBySearch()
+
+    }
+
+    private fun getCharactersBySearch() {
+        binding.homeSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    viewModel.setSearchQuery(it)
+                    viewModel.searchResults.observe(viewLifecycleOwner) { pagingData ->
+                        homeRvAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+                    }
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
     }
 
     private fun setToolbar(binding: FragmentHomeBinding, inflater: LayoutInflater) {
@@ -69,10 +90,16 @@ class HomeFragment : Fragment() {
             }
 
             clearFilter.setOnClickListener {
-                getCharactersFromViewModel()
+//                getCharactersFromViewModel()
+                clearFiltersAndRefreshCharacters()
             }
 
         }
+    }
+
+    private fun clearFiltersAndRefreshCharacters() {
+        viewModel.clearFilters()
+        getCharactersFromViewModel()
     }
 
     private fun getCharactersFromViewModel() {
